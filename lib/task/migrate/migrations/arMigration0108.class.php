@@ -47,6 +47,7 @@ CREATE TABLE `aip`
         `filename` VARCHAR(1024),
         `size_on_disk` BIGINT,
         `digital_object_count` INTEGER,
+        `created_at` DATETIME,
         PRIMARY KEY (`id`),
         CONSTRAINT `aip_FK_1`
                 FOREIGN KEY (`id`)

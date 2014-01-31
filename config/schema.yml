@@ -41,6 +41,7 @@ propel:
     filename: varchar(1024)
     size_on_disk: bigint
     digital_object_count: integer
+    created_at: timestamp
 
   contact_information:
     actor_id: { type: integer, required: true, foreignTable: actor, foreignReference: id, onDelete: cascade }

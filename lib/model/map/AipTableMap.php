@@ -42,6 +42,7 @@ class AipTableMap extends TableMap {
 		$this->addColumn('FILENAME', 'filename', 'VARCHAR', false, 1024, null);
 		$this->addColumn('SIZE_ON_DISK', 'sizeOnDisk', 'BIGINT', false, null, null);
 		$this->addColumn('DIGITAL_OBJECT_COUNT', 'digitalObjectCount', 'INTEGER', false, null, null);
+		$this->addColumn('CREATED_AT', 'createdAt', 'TIMESTAMP', false, null, null);
 		// validators
 	} // initialize()
 
