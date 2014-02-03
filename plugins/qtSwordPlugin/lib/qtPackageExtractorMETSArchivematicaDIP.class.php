@@ -409,7 +409,12 @@ class qtPackageExtractorMETSArchivematicaDIP extends qtPackageExtractorBase
       $relation->subject = $aip;
       $relation->typeId = QubitTerm::AIP_RELATION_ID;
       $relation->save();
+
+      // A lot more data from the METS file (object metadata, events, agents)
+      // is stored in the ES index in arElasticSearchInformationObjectPdo
     }
+
+    $this->resource->save();
 
     parent::process();
   }
