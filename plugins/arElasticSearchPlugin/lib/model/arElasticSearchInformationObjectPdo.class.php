@@ -594,7 +594,8 @@ class arElasticSearchInformationObjectPdo
                 aip.uuid,
                 aip.filename,
                 aip.size_on_disk,
-                aip.digital_object_count';
+                aip.digital_object_count,
+                aip.created_at';
     $sql .= ' FROM '.QubitAip::TABLE_NAME.' aip';
     $sql .= ' JOIN '.QubitRelation::TABLE_NAME.' relation
                 ON aip.id = relation.subject_id';
@@ -613,6 +614,7 @@ class arElasticSearchInformationObjectPdo
       $aip['filename'] = $item['filename'];
       $aip['sizeOnDisk'] = $item['size_on_disk'];
       $aip['digitalObjectCount'] = $item['digital_object_count'];
+      $aip['createdAt'] = arElasticSearchPluginUtil::convertDate($item['created_at']);
 
       $aips[] = $aip;
     }
@@ -929,7 +931,7 @@ class arElasticSearchInformationObjectPdo
 
           if (0 < count($value = $document->xpath($objectXpath.'s:objectCharacteristics/s:objectCharacteristicsExtension/f:fits/f:toolOutput/f:tool/repInfo/lastModified')))
           {
-            $metsData['lastModified'] = (string)$value[0];
+            $metsData['lastModified'] = arElasticSearchPluginUtil::convertDate((string)$value[0]);
           }
 
           if (0 < count($value = $document->xpath($objectXpath.'s:objectCharacteristics/s:size')))
@@ -1088,7 +1090,7 @@ class arElasticSearchInformationObjectPdo
 
             if (0 < count($value = $item->xpath('s:eventDateTime')))
             {
-              $event['dateTime'] = (string)$value[0];
+              $event['dateTime'] = arElasticSearchPluginUtil::convertDate((string)$value[0]);
             }
 
             if (0 < count($value = $item->xpath('s:eventDetail')))
