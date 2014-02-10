@@ -13,7 +13,8 @@ abstract class BaseAip extends QubitObject implements ArrayAccess
     FILENAME = 'aip.FILENAME',
     SIZE_ON_DISK = 'aip.SIZE_ON_DISK',
     DIGITAL_OBJECT_COUNT = 'aip.DIGITAL_OBJECT_COUNT',
-    CREATED_AT = 'aip.CREATED_AT';
+    CREATED_AT = 'aip.CREATED_AT',
+    PART_OF = 'aip.PART_OF';
 
   public static function addSelectColumns(Criteria $criteria)
   {
@@ -28,6 +29,7 @@ abstract class BaseAip extends QubitObject implements ArrayAccess
     $criteria->addSelectColumn(QubitAip::SIZE_ON_DISK);
     $criteria->addSelectColumn(QubitAip::DIGITAL_OBJECT_COUNT);
     $criteria->addSelectColumn(QubitAip::CREATED_AT);
+    $criteria->addSelectColumn(QubitAip::PART_OF);
 
     return $criteria;
   }
@@ -77,6 +79,13 @@ abstract class BaseAip extends QubitObject implements ArrayAccess
   public static function addJointypeCriteria(Criteria $criteria)
   {
     $criteria->addJoin(QubitAip::TYPE_ID, QubitTerm::ID);
+
+    return $criteria;
+  }
+
+  public static function addJoinobjectRelatedBypartOfCriteria(Criteria $criteria)
+  {
+    $criteria->addJoin(QubitAip::PART_OF, QubitObject::ID);
 
     return $criteria;
   }

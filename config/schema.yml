@@ -42,6 +42,7 @@ propel:
     size_on_disk: bigint
     digital_object_count: integer
     created_at: timestamp
+    part_of: { type: integer, foreignTable: object, foreignReference: id, onDelete: setnull }
 
   contact_information:
     actor_id: { type: integer, required: true, foreignTable: actor, foreignReference: id, onDelete: cascade }

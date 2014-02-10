@@ -130,6 +130,8 @@ mapping:
   #
 
   aip:
+    _foreign_types:
+      part_of: information_object
     dynamic: strict
     properties:
       type_id: { type: integer, index: not_analyzed, include_in_all: false }

@@ -117,6 +117,7 @@ CREATE TABLE `aip`
 	`size_on_disk` BIGINT,
 	`digital_object_count` INTEGER,
 	`created_at` DATETIME,
+	`part_of` INTEGER,
 	PRIMARY KEY (`id`),
 	CONSTRAINT `aip_FK_1`
 		FOREIGN KEY (`id`)
@@ -126,6 +127,11 @@ CREATE TABLE `aip`
 	CONSTRAINT `aip_FK_2`
 		FOREIGN KEY (`type_id`)
 		REFERENCES `term` (`id`)
+		ON DELETE SET NULL,
+	INDEX `aip_FI_3` (`part_of`),
+	CONSTRAINT `aip_FK_3`
+		FOREIGN KEY (`part_of`)
+		REFERENCES `object` (`id`)
 		ON DELETE SET NULL
 )Engine=InnoDB;
 

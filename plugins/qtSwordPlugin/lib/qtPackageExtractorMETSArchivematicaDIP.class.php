@@ -301,6 +301,7 @@ class qtPackageExtractorMETSArchivematicaDIP extends qtPackageExtractorBase
     $aip->uuid = $aipUUID;
     $aip->filename = $filename;
     $aip->digitalObjectCount = count($this->getFilesFromDirectory($this->filename.DIRECTORY_SEPARATOR.'/objects'));
+    $aip->partOf = $this->resource->id;
 
     // Get size on disk
     $totalSize = 0;

@@ -43,6 +43,7 @@ class AipTableMap extends TableMap {
 		$this->addColumn('SIZE_ON_DISK', 'sizeOnDisk', 'BIGINT', false, null, null);
 		$this->addColumn('DIGITAL_OBJECT_COUNT', 'digitalObjectCount', 'INTEGER', false, null, null);
 		$this->addColumn('CREATED_AT', 'createdAt', 'TIMESTAMP', false, null, null);
+		$this->addForeignKey('PART_OF', 'partOf', 'INTEGER', 'object', 'ID', false, null, null);
 		// validators
 	} // initialize()
 
@@ -51,8 +52,9 @@ class AipTableMap extends TableMap {
 	 */
 	public function buildRelations()
 	{
-    $this->addRelation('object', 'object', RelationMap::MANY_TO_ONE, array('id' => 'id', ), 'CASCADE', null);
+    $this->addRelation('objectRelatedByid', 'object', RelationMap::MANY_TO_ONE, array('id' => 'id', ), 'CASCADE', null);
     $this->addRelation('term', 'term', RelationMap::MANY_TO_ONE, array('type_id' => 'id', ), 'SET NULL', null);
+    $this->addRelation('objectRelatedBypartOf', 'object', RelationMap::MANY_TO_ONE, array('part_of' => 'id', ), 'SET NULL', null);
 	} // buildRelations()
 
 } // AipTableMap

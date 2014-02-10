@@ -111,6 +111,12 @@ class arElasticSearchAipPdo
     $serialized['digitalObjectCount'] = $this->digital_object_count;
     $serialized['createdAt'] = arElasticSearchPluginUtil::convertDate($this->created_at);
 
+    if (null !== $this->part_of)
+    {
+      $node = new arElasticSearchInformationObjectPdo($this->part_of);
+      $serialized['partOf'][] = $node->serialize();
+    }
+
     return $serialized;
   }
 }
