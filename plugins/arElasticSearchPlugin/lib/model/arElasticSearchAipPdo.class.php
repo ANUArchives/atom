@@ -104,12 +104,17 @@ class arElasticSearchAipPdo
     $serialized = array();
 
     $serialized['id'] = $this->id;
-    $serialized['typeId'] = $this->type_id;
     $serialized['uuid'] = $this->uuid;
     $serialized['filename'] = $this->filename;
     $serialized['sizeOnDisk'] = $this->size_on_disk;
     $serialized['digitalObjectCount'] = $this->digital_object_count;
     $serialized['createdAt'] = arElasticSearchPluginUtil::convertDate($this->created_at);
+
+    if (null !== $this->type_id)
+    {
+      $node = new arElasticSearchTermPdo($this->type_id);
+      $serialized['class'][] = $node->serialize();
+    }
 
     if (null !== $this->part_of)
     {
